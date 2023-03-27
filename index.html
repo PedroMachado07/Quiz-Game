@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://anjana.dev/javascript-first-steps/2-jsquiz-starter.html -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Quiz.js</title>
+    <style>
+        body {
+            margin: 1rem auto;
+            padding: 3rem;
+            font-family: sans-serif;
+        }
+        header {
+            width: 50%;
+            margin: 1em auto;
+        }
+        main {
+            min-width: 25rem;
+            max-width: 50%;
+            margin: 0px auto;
+            display:flex; 
+            flex-direction: column;
+        }
+        #statement {
+            border: 1px solid black;
+            border-radius: 0.5rem;
+            box-shadow: 5px 5px 5px gray;
+            padding: 1rem;
+            font-size: x-large;
+            text-align: center;
+            margin: 1rem 0px;
+            min-height: 2em;
+        }
+        #explanation {
+            padding: 1rem;
+            text-align: center;
+        }
+        #options {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        button {
+            padding: 0.5rem;
+            font-size: medium;
+            border-radius: 5px;
+        }
+        .correct {
+            background-color: lightgreen;
+        }
+        .incorrect {
+            background-color: lightpink;
+        }
+    </style>
+  <meta id="bbafmabaelnnkondpfpjmdklbmfnbmol"></head>
+  <body>
+    <header>
+    <h1>Quiz.js</h1>
+    <p>Do you know JS? Find out!</p>
+    </header>
+
+    <main>
+    <div id="statement">
+        
+    </div>
+
+    <div id="options">
+        <button name="true" value="true">true</button>
+        <button name="false" value="false">false</button>
+    </div>
+
+    <div id="explanation">
+
+    </div>
+
+    </main>
+
+  
+
+  <script type="text/javascript">
+
+    const statement = document.querySelector("#statement");
+    const optionButtons = document.querySelectorAll("button");
+    const explanation = document.querySelector("#explanation");
+    
+    const fact = { 
+        stataement: "Is an array an object in JavaScript??",
+        answer: true,
+        explanation: "Arrays are a kind of object with especial properties"
+};
+    statement.textContent = fact.stataement;
+   
+    const disable = (button) => {
+        button.setAttribute("disabled", "");
+    };
+    const enable = (button) => button.removeAttribute("disable");
+
+   function isCorrect(guessString){
+    return guessString === fact.answer.toString();
+   }
+      
+
+    let trueButton = optionButtons[0];
+    trueButton.addEventListener("click", (event) =>{
+        trueButton.innerText = trueButton.innerText.toUpperCase()
+    });
+    let falseButton = optionButtons[1];
+    falseButton.addEventListener("click", (event) =>{
+        falseButton.innerText = falseButton.innerText.toUpperCase()
+    });
+    let h1 = document.getElementsByTagName("h1");
+    h1 = h1[0];
+    h1.addEventListener("mouseover", (event)=>{
+        h1.textContent = "Hover";
+    });
+    h1.addEventListener("mouseout", (event)=>{
+        h1.textContent = "Quiz.js";
+    });
+
+    for (let button of optionButtons){
+        button.addEventListener("click", (event) =>{
+           explanation.textContent = fact.explanation;
+          
+           for(let button of optionButtons){
+                disable(button);
+           };
+           
+           if(isCorrect(button.value)){
+            button.classList.add("correct");
+           }else{
+            button.classList.add("incorrect");
+           }
+          
+        })
+    }
+        
+
+  </script>
+
+</body>
+</html>
